@@ -23,6 +23,25 @@ let marker_latlng = false;
 
 $(document).ready(function() {
 
+//KaiAds
+getKaiAd({
+    publisher: '6c03d2e1-0833-4731-aac0-801acfc4eb6e',
+    app: 'Topo Map',
+    slot: 'About',
+    test: 0,
+    h: 152,
+    w: 238,
+    container: document.getElementById('ad-container'),
+    onerror: err => console.error('Custom catch:', err),
+    onready: ad => {
+        ad.call('display', {
+            tabindex: 0,
+            navClass: 'items',
+            display: 'block',
+        })
+    }
+});
+
     setTimeout(function() {
         //get location
         getLocation("init");
@@ -55,17 +74,22 @@ $(document).ready(function() {
     function hikebike_map() {
         tilesUrl = 'https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Map data © OpenStreetMap contributors, Imagery: © HikeBike Map'
         });
         map.addLayer(tilesLayer);
     }
 
     function worldimagery_map() {
-        tilesUrl = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        tilesUrl = 'https://wxs.ign.fr/{apikey}/geoportail/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE={style}&TILEMATRIXSET=PM&FORMAT={format}&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}'
         tilesLayer = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            minZoom: 0,
+            maxZoom: 12,
+            apikey: 'choisirgeoportail',
+            format: 'image/jpeg',
+            attribution: 'Geoportail France',
+            tileSize : 256,
+            style: 'normal'
         });
         map.addLayer(tilesLayer);
     }
@@ -73,7 +97,7 @@ $(document).ready(function() {
     function hillshading() {
         tilesUrl = 'https://tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png'
         overlayshading = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Hillshading: SRTM3 v2 (NASA) hosted by Wikimedia Labs'
         });
         map.addLayer(overlayshading);
@@ -83,7 +107,7 @@ $(document).ready(function() {
     function hiking_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Hiking trails: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -93,7 +117,7 @@ $(document).ready(function() {
     function cycling_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Cycling routes: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -103,7 +127,7 @@ $(document).ready(function() {
     function mtb_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/mtb/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Mountainbike routes: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -113,7 +137,7 @@ $(document).ready(function() {
     function slopes_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/slopes/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Skiing slopes: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -123,7 +147,7 @@ $(document).ready(function() {
     function riding_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/riding/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Horse riding: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -133,7 +157,7 @@ $(document).ready(function() {
     function skating_map() {
         tilesUrl = 'http://tile.waymarkedtrails.org/skating/{z}/{x}/{y}.png'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Inline-Skating: &copy; waymarkedtrails.org (CC-BY-SA)'
         });
         map.addLayer(overlay);
@@ -143,7 +167,7 @@ $(document).ready(function() {
     function rain() {
         tilesUrl = 'http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=99d2594c090c1ee9a8ad525fd7a83f85'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Rain &copy; OpenWeather'
         });
         map.addLayer(overlay);
@@ -153,7 +177,7 @@ $(document).ready(function() {
     function clouds() {
         tilesUrl = 'http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=99d2594c090c1ee9a8ad525fd7a83f85'
         overlay = L.tileLayer.fallback(tilesUrl, {
-            maxZoom: 19,
+            maxZoom: 17,
             attribution: 'Clouds &copy; OpenWeather'
         });
         map.addLayer(overlay);
