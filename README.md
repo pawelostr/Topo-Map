@@ -14,7 +14,7 @@ Topo Map is an OpenStreetMap app for KaiOS devices. It's a fork of osm-map with 
 ### Maps
 + OpenTopoMap
 + HikeBike map
-+ Satellite view (Esri World View)
++ Satellite view
 + Six different route layers (hiking, biking, cycling, horse riding, skiing, inline-skating)
 
 ### Manual
@@ -50,7 +50,7 @@ https://developer.kaiostech.com/getting-started/env-setup/os-env-setup
 + Topo Map Imagery © <a href="https://opentopomap.org/">OpenTopoMap</a> <a href="https://creativecommons.org/licenses/by-sa/3.0/">(CC-BY-SA)</a></br>
 + HikeBike Map Imagery © <a href="http://hikebikemap.org/">Colin Marquardt</a></br>
 + Hillshading Imagery © <a href="http://www2.jpl.nasa.gov/srtm/">SRTM3 v2</a></br>
-+ Esri World Imagery © <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a></br>
++ World Imagery © <a href="https://www.geoportail.gouv.fr/">Geoportail France</a></br>
 + Routes overlays © <a href="http://waymarkedtrails.org/">Waymarked Trails</a></br>
 + Weather overlays © <a href="https://openweathermap.org/">OpenWeather</a></br></br>
 
