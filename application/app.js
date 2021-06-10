@@ -181,7 +181,7 @@ $(document).ready(function() {
     function getLocation(option) {
         marker_latlng = false;
         if (option == "init") {
-            toaster("Seeking Position. Press the center key to open the menu.", 10000);
+            toaster("Seeking Position. Press the center key to open the menu.", 5000);
             let options = {
                 enableHighAccuracy: false,
                 timeout: 15000,
@@ -530,6 +530,8 @@ $(document).ready(function() {
                 break;
             case 'EndCall':
                 // window.close();
+                // param.preventDefault();
+                try_to_exit();
                 break;
             case 'Backspace':
                 param.preventDefault();
@@ -538,7 +540,10 @@ $(document).ready(function() {
                     return false;
                 }
                 if (windowOpen == "map") {
-                    window.close();
+                    try_to_exit();                }
+                if (windowOpen == "about") {
+                    hideAbout();
+                    return false;
                 }
                 break;
             case 'SoftLeft':
@@ -620,6 +625,24 @@ $(document).ready(function() {
                 nav(1);
                 }
                 break;
+        }
+    }
+
+    let double_press = 0;
+
+    function reset_double_press() {
+        double_press = 0;
+    }
+
+    function try_to_exit() {
+        window.setTimeout(reset_double_press, 1000);
+
+        if (double_press >= 1) {
+            window.close();
+        }
+
+        if (double_press == 0) {
+            double_press += 1;
         }
     }
 
