@@ -1,8 +1,8 @@
 	{
 	    "version": "1.0.4",
-	    "name": "Topo Map",
+	    "name": "Topo MapP",
 		"subtitle": "Topographic map (OpenStreetMap)",
-	    "description": "Topo Map is a free topographic map with hill shading and contour lines based on OpenStreetMap (osm). It features routes for hiking, cycling, mountain biking, skiing slopes and shows the current weather (clouds and rain).",
+	    "description": "Topo MapP is a free topographic map with hill shading and contour lines based on OpenStreetMap (osm). It features routes for hiking, cycling, mountain biking, skiing slopes and shows the current weather (clouds and rain).",
 	    "launch_path": "/index.html",
 	    "type": "web",
 	    "fullscreen": "true",
@@ -215,7 +215,7 @@
 				"subtitle": "topografische kaart (OpenStreetMap)"
 			},
 			"pl-PL":{
-				"name":"Mapa Topo",
+				"name":"Mapa TopoP",
 				"description":"Darmowa mapa topograficzna z cieniowaniem wzgórz i liniami konturowymi oparta na OpenStreetMap (osm). Zawiera trasy do uprawiania turystyki pieszej, rowerowej, kolarstwa górskiego, stoki narciarskie i pokazuje aktualną pogodę (chmury i deszcz).",
 				"subtitle": "Mapa Topograficzna (OpenStreetMap)"
 			},

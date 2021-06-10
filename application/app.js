@@ -27,7 +27,8 @@ $(document).ready(function() {
         //get location
         getLocation("init");
         ///set default map
-        opentopo_map();
+        // opentopo_map();
+        skating_map();
         windowOpen = "map";
     }, 0);
 
@@ -36,6 +37,7 @@ $(document).ready(function() {
         zoomControl: false,
         dragging: false,
         keyboard: true
+    // }).setView([50, 15], 4);
     }).fitWorld();
     L.control.scale({ position: 'topright', metric: true, imperial: false }).addTo(map);
   
@@ -136,13 +138,17 @@ $(document).ready(function() {
     }
 
     function skating_map() {
-        tilesUrl = 'http://tile.waymarkedtrails.org/skating/{z}/{x}/{y}.png'
-        overlay = L.tileLayer.fallback(tilesUrl, {
+        tilesUrl = 'https://mapserver.mapy.cz/turist-m/{z}-{x}-{y}'
+        tilesLayer = L.tileLayer.fallback(tilesUrl, {
             maxZoom: 17,
-            attribution: 'Inline-Skating: &copy; waymarkedtrails.org (CC-BY-SA)'
+            // attribution: 'Inline-Skating: &copy; waymarkedtrails.org (CC-BY-SA)'
+            attribution: '&copy; Seznam.cz, © OpenStreetMap contributors'
+
         });
-        map.addLayer(overlay);
-        overlayon = true;
+        // map.addLayer(overlay);
+        // overlayon = true;
+        map.addLayer(tilesLayer);
+
     }
 
     function rain() {
@@ -272,42 +278,62 @@ $(document).ready(function() {
         }
     }
 
+    /*
+    zoom levels:
+    <2 -> 2000/3000/5000km
+    >2 -> 1000km
+    >3 -> 500km
+    >4 -> 300km
+    >5 -> 100km
+    >6 -> 50km
+    >7 -> 30km
+    >8 -> 10km
+    >9 -> 5km
+    >10 -> 3km
+    >11 -> 2km
+    >12 -> 1km
+    >13 -> 500m
+    >14 -> 300m
+    >15 -> 100m
+    >16 -> 50m
+
+    */
     function zoom_speed() {
         if (zoom_level < 2) {
-            step = 10;
+            step = 20;
         }
         if (zoom_level > 2) {
-            step = 7.5;
+            step = 8;
         }
         if (zoom_level > 3) {
-            step = 5;
+            step = 4.5;
         }
         if (zoom_level > 4) {
-            step = 1;
+            step = 2.75;
         }
         if (zoom_level > 5) {
-            step = 0.50;
+            step = 1,2;
         }
         if (zoom_level > 6) {
-            step = 0.25;
+            step = 0.5;
         }
         if (zoom_level > 7) {
-            step = 0.1;
+            step = 0.3;
         }
         if (zoom_level > 8) {
-            step = 0.075;
+            step = 0.15;
         }
         if (zoom_level > 9) {
-            step = 0.05;
+            step = 0.075;
         }
         if (zoom_level > 10) {
-            step = 0.025;
+            step = 0.04;
         }
         if (zoom_level > 11) {
-            step = 0.01;
+            step = 0.02;
         }
         if (zoom_level > 12) {
-            step = 0.0075;
+            step = 0.01;
         }
         if (zoom_level > 13) {
             step = 0.005;
@@ -503,7 +529,7 @@ $(document).ready(function() {
                 rain();
                 break;
             case 'EndCall':
-                window.close();
+                // window.close();
                 break;
             case 'Backspace':
                 param.preventDefault();
@@ -522,7 +548,8 @@ $(document).ready(function() {
                     return false;
                 }
                 if (windowOpen == "map") {
-                    ZoomMap("out");
+                    ZoomMap("in");
+                    // ZoomMap("out");
                     return false;
                 }
                 if (windowOpen == "about") {
@@ -540,7 +567,8 @@ $(document).ready(function() {
                     return false;
                     }
                 if (windowOpen == "map") {
-                    ZoomMap("in");
+                    // ZoomMap("in");
+                    ZoomMap("out");
                 }
                 break;
             case 'Enter':
